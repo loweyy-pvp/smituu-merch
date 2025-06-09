@@ -2,102 +2,107 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magazin Smituu - Merch Oficial</title>
+    <title>Magazin Smituu</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #f0f0f0, #dcdcdc);
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #222;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
-        header img {
-            width: 100px;
-            border-radius: 50%;
-        }
-        h1 {
-            margin-top: 10px;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0; padding: 0;
+            display: flex;
         }
         .container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
+            width: 70%;
             padding: 20px;
         }
         .product {
-            background: #fff;
-            border: 1px solid #ccc;
-            border-radius: 12px;
-            margin: 15px;
-            padding: 15px;
-            width: 250px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            text-align: center;
+            background: white;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 5px #aaa;
         }
         .product img {
-            width: 100%;
-            border-radius: 8px;
+            width: 150px;
+            height: 150px;
+            display: block;
+            margin-bottom: 10px;
         }
-        .price {
-            font-size: 20px;
-            color: #e91e63;
-            margin: 10px 0;
+        .hidden {
+            display: none;
         }
-        .payment {
-            margin-top: 10px;
-            font-size: 14px;
-            color: #555;
-        }
-        footer {
-            text-align: center;
+        #cart {
+            width: 30%;
+            background: #fff;
             padding: 20px;
-            background: #222;
-            color: #fff;
-            margin-top: 30px;
+            box-shadow: -2px 0 5px #ccc;
+        }
+        #buyBtn {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: green;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        button.addToCart {
+            background: #007bff;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-<header>
-    <img src="logo.png" alt="Smituu Logo">
-    <h1>Merch Oficial Smituu</h1>
-    <p>Doar pentru prezentare. Plata posibilă doar prin PaysafeCard.</p>
-</header>
+    <div class="container">
+        <h1>Magazin oficial Smituu</h1>
 
-<div class="container">
-    <div class="product">
-        <img src="sapca.png" alt="Șapcă Smituu">
-        <h2>Șapcă Smituu</h2>
-        <p class="price">29.99 €</p>
-        <p class="payment">Plata disponibilă doar cu <strong>PaysafeCard</strong></p>
+        <div id="products" class="hidden">
+            <div class="product">
+                <img src="hanorac.png" alt="Hanorac Smituu">
+                <p>Hanorac Smituu - 120 RON</p>
+                <button class="addToCart" onclick="addToCart('Hanorac Smituu - 120 RON')">Adaugă în coș</button>
+            </div>
+            <div class="product">
+                <img src="tricou.png" alt="Tricou Smituu">
+                <p>Tricou Smituu - 80 RON</p>
+                <button class="addToCart" onclick="addToCart('Tricou Smituu - 80 RON')">Adaugă în coș</button>
+            </div>
+            <div class="product">
+                <img src="sapca.png" alt="Șapcă Smituu">
+                <p>Șapcă Smituu - 50 RON</p>
+                <button class="addToCart" onclick="addToCart('Șapcă Smituu - 50 RON')">Adaugă în coș</button>
+            </div>
+        </div>
     </div>
 
-    <div class="product">
-        <img src="tricou.png" alt="Tricou Smituu">
-        <h2>Tricou Smituu</h2>
-        <p class="price">49.99 €</p>
-        <p class="payment">Plata disponibilă doar cu <strong>PaysafeCard</strong></p>
+    <div id="cart">
+        <h2>Coșul tău</h2>
+        <ul id="cartItems"></ul>
     </div>
 
-    <div class="product">
-        <img src="hanorac.png" alt="Hanorac Smituu">
-        <h2>Hanorac Smituu</h2>
-        <p class="price">69.99 €</p>
-        <p class="payment">Plata disponibilă doar cu <strong>PaysafeCard</strong></p>
-    </div>
-</div>
+    <button id="buyBtn" onclick="showProducts()">Cumpără acum</button>
 
-<footer>
-    &copy; 2025 Smituu Merch. Pana pe 06.17.2025 nu se poate cumpara!.
-</footer>
+    <script>
+        const productsDiv = document.getElementById('products');
+        const cartItems = document.getElementById('cartItems');
 
+        function showProducts() {
+            productsDiv.classList.toggle('hidden');
+        }
+
+        function addToCart(item) {
+            const li = document.createElement('li');
+            li.textContent = item;
+            cartItems.appendChild(li);
+        }
+    </script>
 </body>
 </html>
